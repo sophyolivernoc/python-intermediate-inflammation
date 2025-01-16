@@ -32,3 +32,13 @@ def daily_min(data):
     """Calculate the daily min of a 2d inflammation data array."""
     return np.min(data, axis=0)
 
+def patient_normalise(data):
+    """ Normalise patient data from a 2d inflammation data array """
+    patient_max = np.max(data, axis=1)
+    #import pdb; pdb.set_trace()
+    if np.any(data<0):
+        raise ValueError(" No negative values please thanks")
+    with np.errstate(invalid="ignore", divide="ignore"):
+        normalised = data / patient_max[:, np.newaxis]
+    normalised[np.isnan(normalised)] = 0
+    return normalised
