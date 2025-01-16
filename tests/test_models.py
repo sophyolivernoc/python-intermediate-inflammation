@@ -29,7 +29,7 @@ def test_daily_max_with_different_inputs(test, expect):
     """ test daily max with different inputs"""
     npt.assert_array_equal(daily_max(np.array(test)), np.array(expect))
 
-    
+
 @pytest.mark.parametrize(
     "test, expect",
     [
